@@ -234,9 +234,9 @@ export default class App extends React.Component {
   }
 
   sendEmail() {
-    const serviceId = "service_vlm7k9u",
-    templateId = "template_rw7cd0r",
-    userId = "user_iWaQwq2FAyAJRfwdEhOnt",
+    const a = "service_vlm7k9u",
+    b = "template_rw7cd0r",
+    c = "user_iWaQwq2FAyAJRfwdEhOnt",
     data = {
       client: this.state.client,
       date: this.state.calendarAnswer,
@@ -248,7 +248,7 @@ export default class App extends React.Component {
       sixthA: this.state.sixthAnswer
     };
 
-    emailjs.send(serviceId, templateId, data, userId).then(function(response) {
+    emailjs.send(a, b, data, c).then(function(response) {
       console.log('SUCCESS!', response.status, response.text);
     }, function(error) {
       console.log('FAILED...', error);

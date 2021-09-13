@@ -42,13 +42,6 @@ li {
   margin: 0 0 2rem 2.5rem;
 }
 
-.selectedC {
-  background-color: lightgreen;
-  border: 1px solid blue;
-  font-size: 2rem;
-  margin: 0 0 2rem 2.5rem;
-}
-
 button {
   background-color: navy;
   color: white;
@@ -75,18 +68,6 @@ textarea {
   margin: 1rem 0 0 0;
 }
 
-.rightCol {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
-}
-
-#backBtn, #forwardBtn {
-  background-color: white;
-  color: black;
-  font-size: 2.8rem;
-}
-
 p {
   margin-left: 2.5rem;
   font-size: 1.5rem;
@@ -95,4 +76,27 @@ p {
 
 .welcome {
   margin-bottom: 0.8rem;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 60%;
+  align-self: center;
+}
+
+.arrows {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
+#backBtn,
+#forwardBtn {
+  background-color: white;
+  color: black;
+  font-size: 2.8rem;
 }

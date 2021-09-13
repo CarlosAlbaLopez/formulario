@@ -4,27 +4,38 @@ import emailjs from "emailjs-com";
 import logo from "../images/ipe.jpg";
 
 const calendarInt = [
-  "03 de Septiembre",
-  "17 de Septiembre",
-  "01 de Octubre",
-  "15 de Octubre",
-  "29 de Octubre",
-  "12 de Noviembre",
-  "26 de Noviembre",
-  "10 de Diciembre",
-  "23 de Diciembre",
+  [35, "03 de Septiembre"],
+  [37, "17 de Septiembre"],
+  [39, "01 de Octubre"],
+  [41, "15 de Octubre"],
+  [43, "29 de Octubre"],
+  [45, "12 de Noviembre"],
+  [47, "26 de Noviembre"],
+  [49, "10 de Diciembre"],
+  [51, "23 de Diciembre"],
 ];
 const calendarVir = [
-  "10 de Septiembre",
-  "24 de Septiembre",
-  "08 de Octubre",
-  "22 de Octubre",
-  "05 de Noviembre",
-  "19 de Noviembre",
-  "03 de Diciembre",
-  "17 de Diciembre",
-  "30 de Diciembre",
+  [36, "10 de Septiembre"],
+  [38, "24 de Septiembre"],
+  [40, "08 de Octubre"],
+  [42, "22 de Octubre"],
+  [44, "05 de Noviembre"],
+  [46, "19 de Noviembre"],
+  [48, "03 de Diciembre"],
+  [50, "17 de Diciembre"],
+  [52, "30 de Diciembre"],
 ];
+
+function getWeekNumber(d) {
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  let yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  let weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  return [d.getUTCFullYear(), weekNo];
+}
+
+let currentWeek = getWeekNumber(new Date());
+console.log("It's currently week " + currentWeek[1] + " of " + currentWeek[0]);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -48,7 +59,6 @@ export default class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleBackBtn = this.handleBackBtn.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.handleAcceptBtn = this.handleAcceptBtn.bind(this);
     this.handleExtraBtn = this.handleExtraBtn.bind(this);
     this.handleTArea = this.handleTArea.bind(this);
@@ -307,8 +317,6 @@ export default class App extends React.Component {
     }
   }
 
-  handleChange(e) {}
-
   sendEmail() {
     const a = "service_vlm7k9u",
       b = "template_rw7cd0r",
@@ -484,11 +492,14 @@ export default class App extends React.Component {
               ¿Qué día quieres programar la reunión para Aula Virtual?
             </h4>
             <ul className="ListOfFridays">
-              {calendarVir.map((day) => (
-                <li key={day} onClick={this.handleClick} value={day}>
-                  {day}
-                </li>
-              ))}
+              {calendarVir
+                .filter((day) => day[0] >= currentWeek[1])
+                .slice(0, 4)
+                .map((day) => (
+                  <li key={day[0]} onClick={this.handleClick}>
+                    {day[1]}
+                  </li>
+                ))}
             </ul>
           </div>
         )}
@@ -498,11 +509,14 @@ export default class App extends React.Component {
               ¿Qué día quieres programar la reunión para Formación Integral?
             </h4>
             <ul className="ListOfFridays">
-              {calendarInt.map((day) => (
-                <li key={day} onClick={this.handleClick} date={day}>
-                  {day}
-                </li>
-              ))}
+              {calendarInt
+                .filter((day) => day[0] >= currentWeek[1])
+                .slice(0, 4)
+                .map((day) => (
+                  <li key={day[0]} onClick={this.handleClick}>
+                    {day[1]}
+                  </li>
+                ))}
             </ul>
           </div>
         )}

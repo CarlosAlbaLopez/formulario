@@ -1,17 +1,52 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+
 body {
-  background-color: grey;
-  font-size: 2rem;
+  background-color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: #666;
+}
+
+.full {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  align-self: center;
+  margin: 1rem 0;
+  width: auto;
 }
 
 .container {
-  background-color: white;
-  border: 3px solid black;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  background-color: #f3f3f3;
+  height: 800px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #253237;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-left: 2.5rem;
+  max-width: 1080px;
+  line-height: 1.1;
 }
 
 h4 {
-  margin-left: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 2.5rem;
 }
 
 input {
@@ -20,37 +55,42 @@ input {
   text-transform: uppercase;
   display: block;
   width: 100%;
+  max-width: 1080px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
 li {
-  background-color: lightblue;
-  border: 2px solid navy;
+  background-color: #fff;
+  color: #253237;
   margin: 0 0 1rem 0;
   list-style-type: none;
   padding: 0.5rem;
   cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 
 .selected {
-  background-color: lightgreen;
-}
-
-.calendar {
-  background-color: lightblue;
-  border: 2px solid navy;
-  font-size: 2rem;
-  margin: 0 0 2rem 2.5rem;
+  background-color: #253237;
+  color: #fff;
 }
 
 button {
-  background-color: navy;
-  color: white;
-  font-weight: bold;
+  background-color: #253237;
+  color: #fff;
+  border-radius: 5px;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 10px 20px;
   font-size: 1.5rem;
   margin: 0 0 2rem 2.5rem;
   cursor: pointer;
+  text-transform: uppercase;
+  width: 200px;
 }
 
 .fifthQExtraItems {
@@ -59,9 +99,9 @@ button {
 }
 
 textarea {
-  background-color: lightblue;
-  border: 2px solid navy;
-  font-size: 1.5rem;
+  background-color: #fff;
+  color: #253237;
+  font-size: 1.6rem;
 }
 
 .extraBtn {
@@ -72,31 +112,30 @@ p {
   margin-left: 2.5rem;
   font-size: 1.5rem;
   margin-top: 0;
-}
-
-.welcome {
-  margin-bottom: 0.8rem;
+  max-width: 1080px;
 }
 
 .rightCol {
   display: flex;
   flex-direction: column;
-}
-
-img {
-  width: 60%;
-  align-self: center;
+  justify-content: flex-end;
 }
 
 .arrows {
   display: flex;
-  align-items: flex-end;
   justify-content: space-around;
 }
 
 #backBtn,
 #forwardBtn {
-  background-color: white;
-  color: black;
+  color: #253237;
+  background-color: #f3f3f3;
   font-size: 2.8rem;
+}
+
+.copyright {
+  align-self: center;
+  line-height: 2.4rem;
+  text-decoration: none;
+  color: #666;
 }

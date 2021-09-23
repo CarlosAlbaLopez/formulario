@@ -386,12 +386,8 @@ export default class App extends React.Component {
         sixthA: this.state.sixthAnswer,
       };
     emailjs.send(a, b, data, c).then(
-      function (response) {
-        console.log("SUCCESS!", response.status, response.text);
-      },
-      function (error) {
-        console.log("FAILED...", error);
-      }
+      function (response) {},
+      function (error) {}
     );
   }
 
@@ -619,7 +615,7 @@ export default class App extends React.Component {
           </div>
         </div>
         <a href="https://www.ideaspropiaseditorial.com" className="copyright">
-          Ideas Propias Editorial © 2021
+          Ideaspropias Editorial © 2021
         </a>
       </div>
     );

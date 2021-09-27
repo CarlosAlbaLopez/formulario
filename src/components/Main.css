@@ -49,9 +49,14 @@ h5 {
   margin: 2.5rem;
 }
 
+h6 {
+  font-size: 1.6rem;
+  margin-top: 1.6rem;
+}
+
 input {
   margin: 0 0 2rem 2.5rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   display: block;
   width: 100%;
@@ -93,6 +98,19 @@ button {
   width: 200px;
 }
 
+.acceptBtn {
+  background-color: #253237;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  margin: 0 0 2rem 2.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: 200px;
+}
+
 .fifthQExtraItems {
   display: flex;
   flex-direction: column;
@@ -113,6 +131,10 @@ p {
   font-size: 1.5rem;
   margin-top: 0;
   max-width: 1080px;
+}
+
+.emailInput {
+  text-transform: none;
 }
 
 .rightCol {

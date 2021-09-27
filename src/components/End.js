@@ -15,7 +15,7 @@ export default class FirstQ extends React.Component {
 
         {!this.props.onlyVirtual && (
           <div>
-            <h5>Horario aproximado de 10:00 a 11:00</h5>
+            <h5>Horario aproximado de 10:00 a 13:00</h5>
             <h5>Tipo de formación: Formación Integral</h5>
           </div>
         )}

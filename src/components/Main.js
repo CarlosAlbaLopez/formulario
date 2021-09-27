@@ -165,70 +165,17 @@ export default class App extends React.Component {
         e.target.className = "selected";
       }
     } else if (this.state.currentQuestion === 7) {
-      if (this.state.client === "") {
-        window.alert(
-          "Por favor, responde la pregunta: Para empezar, indícanos tu nombre y la razón social de tu empresa."
-        );
-        setTimeout(
-          () =>
-            this.setState({
-              currentQuestion: 0,
-              lastQuestion: 0,
-            }),
-          500
-        );
-      } else if (this.state.firstAnswer === "") {
-        window.alert(
-          "Por favor, responde la pregunta: ¿Es la primera formación que solicitas?"
-        );
-        setTimeout(
-          () =>
-            this.setState({
-              currentQuestion: 1,
-              lastQuestion: 0,
-            }),
-          500
-        );
-      } else if (!this.state.onlyVirtual && this.state.secondAnswer === "") {
-        window.alert(
-          "Por favor, responde la pregunta: ¿Tienes experiencia con plataformas educativas (e-learning)?"
-        );
-        setTimeout(
-          () =>
-            this.setState({
-              currentQuestion: 2,
-              lastQuestion: 1,
-            }),
-          500
-        );
-      } else if (
-        !this.state.onlyVirtual &&
-        this.state.thirdAnswer.length === 0
-      ) {
-        window.alert(
-          "Por favor, responde la pregunta: ¿Qué formación vas a impartir?"
-        );
-        setTimeout(
-          () =>
-            this.setState({
-              currentQuestion: 3,
-              lastQuestion: 2,
-            }),
-          500
-        );
-      } else {
-        e.target.className = "selected";
-        this.setState({
-          calendarAnswer: e.target.innerHTML,
-        });
-        setTimeout(
-          () =>
-            this.setState({
-              currentQuestion: 8,
-            }),
-          500
-        );
-      }
+      e.target.className = "selected";
+      this.setState({
+        calendarAnswer: e.target.innerHTML,
+      });
+      setTimeout(
+        () =>
+          this.setState({
+            currentQuestion: 8,
+          }),
+        500
+      );
     }
   }
 
@@ -291,12 +238,65 @@ export default class App extends React.Component {
       });
     } else if (this.state.currentQuestion === 8) {
       if (this.state.clientEmail.includes("@")) {
-        this.setState({
-          currentQuestion: 9,
-          lastQuestion: 8,
-        });
+        if (this.state.client === "") {
+          window.alert(
+            "Por favor, responde la pregunta: Para empezar, indícanos tu nombre y la razón social de tu empresa."
+          );
+          setTimeout(
+            () =>
+              this.setState({
+                currentQuestion: 0,
+                lastQuestion: 0,
+              }),
+            500
+          );
+        } else if (this.state.firstAnswer === "") {
+          window.alert(
+            "Por favor, responde la pregunta: ¿Es la primera formación que solicitas?"
+          );
+          setTimeout(
+            () =>
+              this.setState({
+                currentQuestion: 1,
+                lastQuestion: 0,
+              }),
+            500
+          );
+        } else if (!this.state.onlyVirtual && this.state.secondAnswer === "") {
+          window.alert(
+            "Por favor, responde la pregunta: ¿Tienes experiencia con plataformas educativas (e-learning)?"
+          );
+          setTimeout(
+            () =>
+              this.setState({
+                currentQuestion: 2,
+                lastQuestion: 1,
+              }),
+            500
+          );
+        } else if (
+          !this.state.onlyVirtual &&
+          this.state.thirdAnswer.length === 0
+        ) {
+          window.alert(
+            "Por favor, responde la pregunta: ¿Qué formación vas a impartir?"
+          );
+          setTimeout(
+            () =>
+              this.setState({
+                currentQuestion: 3,
+                lastQuestion: 2,
+              }),
+            500
+          );
+        } else {
+          this.setState({
+            currentQuestion: 9,
+            lastQuestion: 8,
+          });
 
-        setTimeout(() => this.sendEmail(), 500);
+          setTimeout(() => this.sendEmail(), 500);
+        }
       } else {
         window.alert("Por favor, introduzca una dirección de email válida.");
       }

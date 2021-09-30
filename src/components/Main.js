@@ -349,42 +349,42 @@ export default class App extends React.Component {
   }
   handleSecondEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      secondEmail: e.target.value,
     });
   }
   handleThirdEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      thirdEmail: e.target.value,
     });
   }
   handleFourthEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      fourthEmail: e.target.value,
     });
   }
   handleFifthEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      fifthEmail: e.target.value,
     });
   }
   handleSixthEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      sixthEmail: e.target.value,
     });
   }
   handleSeventhEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      seventhEmail: e.target.value,
     });
   }
   handleEighthEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      eighthEmail: e.target.value,
     });
   }
   handleNinthEmail(e) {
     this.setState({
-      clientEmail: e.target.value,
+      ninthEmail: e.target.value,
     });
   }
 
@@ -458,7 +458,7 @@ export default class App extends React.Component {
       b = "template_cpw0owc",
       c = "user_iWaQwq2FAyAJRfwdEhOnt",
       title = "¡Tu formación se ha agendado correctamente!",
-      date = "Fecha de la formación: " + this.props.calendarAnswer,
+      date = "Fecha de la formación: " + this.state.calendarAnswer,
       reservation = this.state.onlyVirtual
         ? "Horario aproximado de 10:00 a 11:00. Tipo de formación: Aula Virtual."
         : "Horario aproximado de 10:00 a 13:00. Tipo de formación: Formación Integral",
@@ -469,6 +469,7 @@ export default class App extends React.Component {
       type = this.state.onlyVirtual ? "AULA VIRTUAL" : "INTEGRAL",
       data = {
         title: title,
+        day: this.props.calendarAnswer,
         date: date,
         reservation: reservation,
         body: body,

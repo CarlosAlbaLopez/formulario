@@ -4,6 +4,14 @@ export default class FirstQ extends React.Component {
   render() {
     return (
       <div className="end">
+        {this.props.name && (
+          <h4>
+            ¡Tu formación se ha agendado correctamente, {this.props.name}!
+          </h4>
+        )}
+        {!this.props.name && (
+          <h4>¡Tu formación se ha agendado correctamente!</h4>
+        )}
         <h4>¡Tu formación se ha agendado correctamente!</h4>
         <h5>Fecha de la formación: {this.props.calendarAnswer}</h5>
         {this.props.onlyVirtual && (
@@ -20,11 +28,11 @@ export default class FirstQ extends React.Component {
           </div>
         )}
         <p>
-          La sesión formativa, previa autorización, se grabará y posteriormente
-          se enviará a todos los asistentes. En caso de no poder asistir,
-          agradecemos canceles la solicitud generando un nuevo ticket con la
-          tipología "Cancelación de formación" con 24/48h de antelación, podrás
-          generar una nueva solicitud cuando lo necesites.
+          La sesión formativa se impartirá online y, previa autorización, se
+          grabará y posteriormente se enviará a todos los asistentes. En caso de
+          no poder asistir, agradecemos canceles la solicitud generando un nuevo
+          ticket con la tipología "Cancelación de formación" con 24/48h de
+          antelación, podrás generar una nueva solicitud cuando lo necesites.
         </p>
         <p>
           Desde Soporte técnico te ofrecemos el apoyo y la formación en el uso

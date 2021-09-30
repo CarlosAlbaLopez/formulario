@@ -33,6 +33,14 @@ export default class App extends React.Component {
       calendarAnswer: "",
       onlyVirtual: false,
       clientEmail: "",
+      secondEmail: "",
+      thirdEmail: "",
+      fourthEmail: "",
+      fifthEmail: "",
+      sixthEmail: "",
+      seventhEmail: "",
+      eighthEmail: "",
+      ninthEmail: "",
     };
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -43,7 +51,16 @@ export default class App extends React.Component {
     this.handleTArea = this.handleTArea.bind(this);
     this.handleForwardBtn = this.handleForwardBtn.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
+    this.handleSecondEmail = this.handleSecondEmail.bind(this);
+    this.handleThirdEmail = this.handleThirdEmail.bind(this);
+    this.handleFourthEmail = this.handleFourthEmail.bind(this);
+    this.handleFifthEmail = this.handleFifthEmail.bind(this);
+    this.handleSixthEmail = this.handleSixthEmail.bind(this);
+    this.handleSeventhEmail = this.handleSeventhEmail.bind(this);
+    this.handleEighthEmail = this.handleEighthEmail.bind(this);
+    this.handleNinthEmail = this.handleNinthEmail.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
+    this.sendClientEmail = this.sendClientEmail.bind(this);
   }
 
   handleInput(e) {
@@ -296,6 +313,7 @@ export default class App extends React.Component {
           });
 
           setTimeout(() => this.sendEmail(), 500);
+          setTimeout(() => this.sendClientEmail(), 1000);
         }
       } else {
         window.alert("Por favor, introduzca una dirección de email válida.");
@@ -325,6 +343,46 @@ export default class App extends React.Component {
   }
 
   handleEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleSecondEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleThirdEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleFourthEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleFifthEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleSixthEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleSeventhEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleEighthEmail(e) {
+    this.setState({
+      clientEmail: e.target.value,
+    });
+  }
+  handleNinthEmail(e) {
     this.setState({
       clientEmail: e.target.value,
     });
@@ -377,8 +435,8 @@ export default class App extends React.Component {
       c = "user_iWaQwq2FAyAJRfwdEhOnt",
       reservation = this.state.onlyVirtual ? "AULA VIRTUAL" : "INTEGRAL",
       data = {
-        name: this.state.name.toUpperCase(),
-        client: this.state.client.toUpperCase(),
+        name: this.state.name,
+        client: this.state.client,
         date: this.state.calendarAnswer,
         type: reservation,
         firstA: this.state.firstAnswer,
@@ -388,6 +446,43 @@ export default class App extends React.Component {
         fifthA: this.state.fifthAnswer,
         sixthA: this.state.sixthAnswer,
         email: this.state.clientEmail,
+      };
+    emailjs.send(a, b, data, c).then(
+      function (response) {},
+      function (error) {}
+    );
+  }
+
+  sendClientEmail() {
+    const a = "service_5w6xo6f",
+      b = "template_cpw0owc",
+      c = "user_iWaQwq2FAyAJRfwdEhOnt",
+      title = "¡Tu formación se ha agendado correctamente!",
+      date = "Fecha de la formación: " + this.props.calendarAnswer,
+      reservation = this.state.onlyVirtual
+        ? "Horario aproximado de 10:00 a 11:00. Tipo de formación: Aula Virtual."
+        : "Horario aproximado de 10:00 a 13:00. Tipo de formación: Formación Integral",
+      body =
+        "La sesión formativa se impartirá online y, previa autorización, se grabará y posteriormente se enviará a todos los asistentes. En caso de no poder asistir, agradecemos canceles la solicitud generando un nuevo ticket con la tipología 'Cancelación de formación' con 24/48h de antelación, podrás generar una nueva solicitud cuando lo necesites.",
+      body2 =
+        "Desde Soporte técnico te ofrecemos el apoyo y la formación en el uso de nuestra plataforma Moodle y sus herramientas asociadas, así mismo, la ayuda en el ámbito pedagógico o de trámites con las administrataciones en materia de formación, está fuera del alcance de nuestro servicio.",
+      type = this.state.onlyVirtual ? "AULA VIRTUAL" : "INTEGRAL",
+      data = {
+        title: title,
+        date: date,
+        reservation: reservation,
+        body: body,
+        body2: body2,
+        type: type,
+        mail: this.state.clientEmail,
+        mail2: this.state.secondEmail,
+        mail3: this.state.thirdEmail,
+        mail4: this.state.fourthEmail,
+        mail5: this.state.fifthEmail,
+        mail6: this.state.sixthEmail,
+        mail7: this.state.seventhEmail,
+        mail8: this.state.eighthEmail,
+        mail9: this.state.ninthEmail,
       };
     emailjs.send(a, b, data, c).then(
       function (response) {},
@@ -410,7 +505,7 @@ export default class App extends React.Component {
             />
           )}
           {this.state.currentQuestion === 1 && (
-            <FirstQ handleClick={this.handleClick} />
+            <FirstQ handleClick={this.handleClick} name={this.state.name} />
           )}
           {this.state.currentQuestion === 2 && (
             <SecondQ handleClick={this.handleClick} />
@@ -422,7 +517,7 @@ export default class App extends React.Component {
             />
           )}
           {this.state.currentQuestion === 4 && (
-            <FourthQ handleClick={this.handleClick} />
+            <FourthQ handleClick={this.handleClick} name={this.state.name} />
           )}
           {this.state.currentQuestion === 5 && (
             <FifthQ
@@ -451,7 +546,23 @@ export default class App extends React.Component {
           {this.state.currentQuestion === 8 && (
             <EmailQ
               clientEmail={this.state.clientEmail}
+              secondEmail={this.state.secondEmail}
+              thirdEmail={this.state.thirdEmail}
+              fourthEmail={this.state.fourthEmail}
+              fifthEmail={this.state.fifthEmail}
+              sixthEmail={this.state.sixthEmail}
+              seventhEmail={this.state.clientEmail}
+              eighthEmail={this.state.eighthEmail}
+              ninthEmail={this.state.ninthEmail}
               handleEmail={this.handleEmail}
+              handleSecondEmail={this.handleSecondEmail}
+              handleThirdEmail={this.handleThirdEmail}
+              handleFourthEmail={this.handleFourthEmail}
+              handleFifthEmail={this.handleFifthEmail}
+              handleSixthEmail={this.handleSixthEmail}
+              handleSeventhEmail={this.handleSeventhEmail}
+              handleEighthEmail={this.handleEighthEmail}
+              handleNinthEmail={this.handleNinthEmail}
               handleAcceptBtn={this.handleAcceptBtn}
             />
           )}
@@ -459,6 +570,7 @@ export default class App extends React.Component {
             <End
               calendarAnswer={this.state.calendarAnswer}
               onlyVirtual={this.state.onlyVirtual}
+              name={this.state.name}
             />
           )}
           <div className="rightCol">

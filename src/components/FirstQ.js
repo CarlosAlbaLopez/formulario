@@ -4,7 +4,16 @@ export default class FirstQ extends React.Component {
   render() {
     return (
       <div className="firstQ">
-        <h5 className="firstQText">¿Es la primera formación que solicitas?</h5>
+        {this.props.name && (
+          <h5 className="firstQText">
+            ¿Es la primera formación que solicitas, {this.props.name}?
+          </h5>
+        )}
+        {!this.props.name && (
+          <h5 className="firstQText">
+            ¿Es la primera formación que solicitas?
+          </h5>
+        )}
         <ul>
           <li onClick={this.props.handleClick}>Sí</li>
           <li onClick={this.props.handleClick}>Necesito un refuerzo</li>

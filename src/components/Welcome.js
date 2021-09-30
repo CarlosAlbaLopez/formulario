@@ -16,17 +16,18 @@ export default class Welcome extends React.Component {
         <h5 className="welcome">
           Para empezar, indícanos tu nombre y la razón social de tu empresa.
         </h5>
+        <div className="divWelcome">Nombre</div>
         <input
           type="text"
           onChange={this.props.handleNameInput}
-          placeholder="nombre"
           value={this.props.name}
         />
+        <div className="divWelcome">Razón Social *</div>
         <input
           type="text"
           onChange={this.props.handleInput}
-          placeholder="razón social"
           value={this.props.client}
+          id="input-razon-social"
         />
         <button className="acceptBtn" onClick={this.props.handleAcceptBtn}>
           Aceptar

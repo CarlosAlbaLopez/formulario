@@ -552,7 +552,7 @@ export default class App extends React.Component {
               fourthEmail={this.state.fourthEmail}
               fifthEmail={this.state.fifthEmail}
               sixthEmail={this.state.sixthEmail}
-              seventhEmail={this.state.clientEmail}
+              seventhEmail={this.state.seventhEmail}
               eighthEmail={this.state.eighthEmail}
               ninthEmail={this.state.ninthEmail}
               handleEmail={this.handleEmail}

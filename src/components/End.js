@@ -1,4 +1,5 @@
 import React from "react";
+import familiarize from "../familiarize";
 
 export default class FirstQ extends React.Component {
   render() {
@@ -6,25 +7,31 @@ export default class FirstQ extends React.Component {
       <div className="end">
         {this.props.name && (
           <h4>
-            ¡Tu formación se ha agendado correctamente, {this.props.name}!
+            ¡Tu formación se ha agendado correctamente,{" "}
+            {familiarize(this.props.name)}!
           </h4>
         )}
         {!this.props.name && (
           <h4>¡Tu formación se ha agendado correctamente!</h4>
         )}
-        <h4>¡Tu formación se ha agendado correctamente!</h4>
         <h5>Fecha de la formación: {this.props.calendarAnswer}</h5>
         {this.props.onlyVirtual && (
           <div>
-            <h5>Horario aproximado de 10:00 a 11:00</h5>
             <h5>Tipo de formación: Aula Virtual</h5>
+            <h6>
+              Recuerda que todas nuestras formaciones se realizan los viernes y
+              tienen una duración aproximada de una hora.
+            </h6>
           </div>
         )}
 
         {!this.props.onlyVirtual && (
           <div>
-            <h5>Horario aproximado de 10:00 a 13:00</h5>
             <h5>Tipo de formación: Formación Integral</h5>
+            <h6>
+              Recuerda que todas nuestras formaciones se realizan los viernes y
+              tienen una duración aproximada de tres horas.
+            </h6>
           </div>
         )}
         <p>

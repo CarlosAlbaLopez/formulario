@@ -52,6 +52,11 @@ h5 {
 h6 {
   font-size: 1.6rem;
   margin-top: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.justi {
+  text-align: justify;
 }
 
 .divWelcome {
@@ -59,6 +64,11 @@ h6 {
   font-size: 1.5rem;
   margin-top: 0;
   max-width: 1080px;
+}
+
+.divRazon::after {
+  content: "*";
+  color: #e3242b;
 }
 
 input {
@@ -121,6 +131,12 @@ button {
   width: 200px;
 }
 
+.thirdQText::after,
+.sixthQText::after {
+  content: " (Respuesta múltiple).";
+  font-size: 1.5rem;
+}
+
 .fifthQExtraItems {
   display: flex;
   flex-direction: column;
@@ -143,16 +159,27 @@ p {
   max-width: 1080px;
 }
 
+.emailContainer {
+  display: flex;
+  margin-bottom: 0;
+  align-items: flex-start;
+}
+
+.emailInput {
+  height: 2.5rem;
+}
+
 .none {
   display: none;
 }
 
 .addEmail {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   background-color: transparent;
   padding: 0;
   width: auto;
   color: #253237;
+  margin-bottom: 0;
 }
 
 .rightCol {

@@ -8,12 +8,17 @@ export default class FirstQ extends React.Component {
           Ya casi hemos terminado, por favor, indícanos un email para enviarte
           la convocatoria.
         </h5>
-        <input
-          className="emailInput"
-          type="email"
-          onChange={this.props.handleEmail}
-          value={this.props.clientEmail}
-        />
+        <div className="emailContainer">
+          <input
+            className="emailInput"
+            type="email"
+            onChange={this.props.handleEmail}
+            value={this.props.clientEmail}
+          />
+          <button className="addEmail" onClick={addEmail}>
+            &#x271A;
+          </button>
+        </div>
         <input
           className="emailInput none"
           type="email"
@@ -62,9 +67,6 @@ export default class FirstQ extends React.Component {
           onChange={this.props.handleNinthEmail}
           value={this.props.ninthEmail}
         />
-        <button className="addEmail" onClick={addEmail}>
-          &#x271A;
-        </button>
         <br />
         <button className="acceptBtn" onClick={this.props.handleAcceptBtn}>
           Aceptar

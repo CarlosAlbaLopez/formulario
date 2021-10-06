@@ -1,26 +1,26 @@
 import React from "react";
 
 const calendarInt = [
-  [35, "03 de Septiembre"],
-  [37, "17 de Septiembre"],
-  [39, "01 de Octubre"],
-  [41, "15 de Octubre"],
-  [43, "29 de Octubre"],
-  [45, "12 de Noviembre"],
-  [47, "26 de Noviembre"],
-  [49, "10 de Diciembre"],
-  [51, "23 de Diciembre"],
+  [35, "03 de Septiembre."],
+  [37, "17 de Septiembre."],
+  [39, "01 de Octubre."],
+  [41, "15 de Octubre."],
+  [43, "29 de Octubre."],
+  [45, "12 de Noviembre."],
+  [47, "26 de Noviembre."],
+  [49, "10 de Diciembre."],
+  [51, "23 de Diciembre."],
 ];
 const calendarVir = [
-  [36, "10 de Septiembre"],
-  [38, "24 de Septiembre"],
-  [40, "08 de Octubre"],
-  [42, "22 de Octubre"],
-  [44, "05 de Noviembre"],
-  [46, "19 de Noviembre"],
-  [48, "03 de Diciembre"],
-  [50, "17 de Diciembre"],
-  [52, "30 de Diciembre"],
+  [36, "10 de Septiembre."],
+  [38, "24 de Septiembre."],
+  [40, "08 de Octubre."],
+  [42, "22 de Octubre."],
+  [44, "05 de Noviembre."],
+  [46, "19 de Noviembre."],
+  [48, "03 de Diciembre."],
+  [50, "17 de Diciembre."],
+  [52, "30 de Diciembre."],
 ];
 
 function getWeekNumber(d) {
@@ -42,6 +42,10 @@ export default class FirstQ extends React.Component {
             <h5 className="calendarQText">
               ¿Qué día quieres programar la reunión para Aula Virtual?
             </h5>
+            <h6>
+              Recuerda que todas nuestras formaciones se realizan los viernes y
+              tienen una duración aproximada de una hora.
+            </h6>
             <ul className="ListOfFridays">
               {calendarVir
                 .filter((day) => day[0] >= currentWeek[1])
@@ -52,7 +56,6 @@ export default class FirstQ extends React.Component {
                   </li>
                 ))}
             </ul>
-            <h6>Horario aproximado de 10:00 a 11:00.</h6>
           </div>
         )}
         {!this.props.onlyVirtual && (
@@ -60,6 +63,10 @@ export default class FirstQ extends React.Component {
             <h5 className="calendarQText">
               ¿Qué día quieres programar la reunión para Formación Integral?
             </h5>
+            <h6>
+              Recuerda que todas nuestras formaciones se realizan los viernes y
+              tienen una duración aproximada de tres horas.
+            </h6>
             <ul className="ListOfFridays">
               {calendarInt
                 .filter((day) => day[0] >= currentWeek[1])
@@ -70,7 +77,6 @@ export default class FirstQ extends React.Component {
                   </li>
                 ))}
             </ul>
-            <h6>Horario aproximado de 10:00 a 13:00.</h6>
           </div>
         )}
       </div>

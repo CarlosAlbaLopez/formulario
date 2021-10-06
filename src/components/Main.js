@@ -83,7 +83,7 @@ export default class App extends React.Component {
       });
       if (
         e.target.innerHTML ===
-        "Ya he trabajado con la plataforma, pero necesito ver Aula Virtual"
+        "Ya he trabajado con la plataforma, pero necesito ver Aula Virtual."
       ) {
         setTimeout(
           () =>
@@ -126,7 +126,7 @@ export default class App extends React.Component {
       }
     } else if (this.state.currentQuestion === 4) {
       e.target.className = "selected";
-      if (e.target.innerHTML === "No, cargaré cursos propios") {
+      if (e.target.innerHTML === "No, cargaré cursos propios.") {
         this.setState({
           fourthAnswer: e.target.innerHTML,
         });
@@ -153,7 +153,10 @@ export default class App extends React.Component {
       }
     } else if (this.state.currentQuestion === 5) {
       e.target.className = "selected";
-      if (e.target.innerHTML === "Sí") {
+      if (
+        e.target.innerHTML ===
+        "Sí. (Deben llevar alguna documentación específica, el sistema de evaluación tiene que ser de un modo determinado, etc.)."
+      ) {
         this.setState({
           yesToFifthQ: true,
         });
@@ -171,10 +174,16 @@ export default class App extends React.Component {
         );
       }
     } else if (this.state.currentQuestion === 6) {
-      if (e.target.innerHTML === "Otra") {
-        this.setState({
-          anotherInSixthQ: true,
-        });
+      if (e.target.innerHTML === "Otra:") {
+        if (e.target.className === "selected") {
+          this.setState({
+            anotherInSixthQ: false,
+          });
+        } else {
+          this.setState({
+            anotherInSixthQ: true,
+          });
+        }
       }
       if (e.target.className === "selected") {
         e.target.className = "";
@@ -211,7 +220,7 @@ export default class App extends React.Component {
     } else if (this.state.currentQuestion === 3) {
       if (
         selectedOptions.length === 1 &&
-        selectedOptions[0].innerHTML === "Sólo Aula Virtual"
+        selectedOptions[0].innerHTML === "Sólo Aula Virtual."
       ) {
         this.setState((prevState) => ({
           thirdAnswer: prevState.thirdAnswer.concat(
@@ -236,23 +245,50 @@ export default class App extends React.Component {
         });
       }
     } else if (this.state.currentQuestion === 6) {
-      for (let i = 0; i < selectedOptions.length; i++) {
-        this.setState((prevState) => ({
-          sixthAnswer: prevState.sixthAnswer.concat(
-            selectedOptions[i].innerHTML
-          ),
-        }));
+      if (document.getElementById("tAreaTwo")) {
+        let answer = document.getElementById("tAreaTwo");
+        if (!answer.value) {
+          window.alert(
+            "Por favor, cubre el cuadro de texto o desmarca la opción 'Otra' para continuar."
+          );
+        } else {
+          for (let i = 0; i < selectedOptions.length; i++) {
+            this.setState((prevState) => ({
+              sixthAnswer: prevState.sixthAnswer.concat(
+                selectedOptions[i].innerHTML
+              ),
+            }));
+          }
+          if (this.state.anotherInSixthQ) {
+            let otherAnswer = document.getElementById("tAreaTwo");
+            this.setState((prevState) => ({
+              sixthAnswer: prevState.sixthAnswer.concat(otherAnswer.value),
+            }));
+          }
+          this.setState({
+            currentQuestion: 7,
+            lastQuestion: 6,
+          });
+        }
+      } else {
+        for (let i = 0; i < selectedOptions.length; i++) {
+          this.setState((prevState) => ({
+            sixthAnswer: prevState.sixthAnswer.concat(
+              selectedOptions[i].innerHTML
+            ),
+          }));
+        }
+        if (this.state.anotherInSixthQ) {
+          let otherAnswer = document.getElementById("tAreaTwo");
+          this.setState((prevState) => ({
+            sixthAnswer: prevState.sixthAnswer.concat(otherAnswer.value),
+          }));
+        }
+        this.setState({
+          currentQuestion: 7,
+          lastQuestion: 6,
+        });
       }
-      if (this.state.anotherInSixthQ) {
-        let otherAnswer = document.getElementById("tAreaTwo");
-        this.setState((prevState) => ({
-          sixthAnswer: prevState.sixthAnswer.concat(otherAnswer.value),
-        }));
-      }
-      this.setState({
-        currentQuestion: 7,
-        lastQuestion: 6,
-      });
     } else if (this.state.currentQuestion === 8) {
       if (this.state.clientEmail.includes("@")) {
         if (this.state.client === "") {
@@ -335,11 +371,15 @@ export default class App extends React.Component {
 
   handleExtraBtn() {
     let answer = document.getElementById("tArea");
-    this.setState({
-      fifthAnswer: answer.value,
-      currentQuestion: 6,
-      lastQuestion: 5,
-    });
+    if (!answer.value) {
+      window.alert("Por favor, especifica al menos una particularidad.");
+    } else {
+      this.setState({
+        fifthAnswer: answer.value,
+        currentQuestion: 6,
+        lastQuestion: 5,
+      });
+    }
   }
 
   handleEmail(e) {
@@ -446,6 +486,14 @@ export default class App extends React.Component {
         fifthA: this.state.fifthAnswer,
         sixthA: this.state.sixthAnswer,
         email: this.state.clientEmail,
+        mail2: this.state.secondEmail,
+        mail3: this.state.thirdEmail,
+        mail4: this.state.fourthEmail,
+        mail5: this.state.fifthEmail,
+        mail6: this.state.sixthEmail,
+        mail7: this.state.seventhEmail,
+        mail8: this.state.eighthEmail,
+        mail9: this.state.ninthEmail,
       };
     emailjs.send(a, b, data, c).then(
       function (response) {},
@@ -460,8 +508,8 @@ export default class App extends React.Component {
       title = "¡Tu formación se ha agendado correctamente!",
       date = "Fecha de la formación: " + this.state.calendarAnswer,
       reservation = this.state.onlyVirtual
-        ? "Horario aproximado de 10:00 a 11:00. Tipo de formación: Aula Virtual."
-        : "Horario aproximado de 10:00 a 13:00. Tipo de formación: Formación Integral",
+        ? "Tipo de formación: Aula Virtual. Recuerda que todas nuestras formaciones se realizan los viernes y tienen una duración aproximada de una hora."
+        : "Tipo de formación: Formación Integral. Recuerda que todas nuestras formaciones se realizan los viernes y tienen una duración aproximada de tres horas.",
       body =
         "La sesión formativa se impartirá online y, previa autorización, se grabará y posteriormente se enviará a todos los asistentes. En caso de no poder asistir, agradecemos canceles la solicitud generando un nuevo ticket con la tipología 'Cancelación de formación' con 24/48h de antelación, podrás generar una nueva solicitud cuando lo necesites.",
       body2 =
@@ -535,7 +583,7 @@ export default class App extends React.Component {
               handleAcceptBtn={this.handleAcceptBtn}
               handleTArea={this.handleTArea}
               textAreaTwoValue={this.textAreaTwoValue}
-              yesToFifthQ={this.state.anotherInSixthQ}
+              anotherInSixthQ={this.state.anotherInSixthQ}
             />
           )}
           {this.state.currentQuestion === 7 && (

@@ -7,7 +7,7 @@ export default class Welcome extends React.Component {
         <h4 className="welcome">
           ¡Nos encanta que quieras formarte con nosotros!
         </h4>
-        <p>
+        <p class="justi">
           En Ideaspropias queremos darte la formación que mejor se adapte a tus
           necesidades. Para ello, agradecemos que dediques unos segundos a
           responder a unas sencillas preguntas y así ofrecerte un mejor
@@ -22,7 +22,7 @@ export default class Welcome extends React.Component {
           onChange={this.props.handleNameInput}
           value={this.props.name}
         />
-        <div className="divWelcome">Razón Social *</div>
+        <div className="divWelcome divRazon">Razón Social</div>
         <input
           type="text"
           onChange={this.props.handleInput}

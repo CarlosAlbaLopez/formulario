@@ -7,7 +7,7 @@ export default class Welcome extends React.Component {
         <h4 className="welcome">
           ¡Nos encanta que quieras formarte con nosotros!
         </h4>
-        <p class="justi">
+        <p className="justi">
           En Ideaspropias queremos darte la formación que mejor se adapte a tus
           necesidades. Para ello, agradecemos que dediques unos segundos a
           responder a unas sencillas preguntas y así ofrecerte un mejor

@@ -1,28 +1,5 @@
 import React from "react";
 
-const calendarInt = [
-  [35, "03 de Septiembre."],
-  [37, "17 de Septiembre."],
-  [39, "01 de Octubre."],
-  [41, "15 de Octubre."],
-  [43, "29 de Octubre."],
-  [45, "12 de Noviembre."],
-  [47, "26 de Noviembre."],
-  [49, "10 de Diciembre."],
-  [51, "23 de Diciembre."],
-];
-const calendarVir = [
-  [36, "10 de Septiembre."],
-  [38, "24 de Septiembre."],
-  [40, "08 de Octubre."],
-  [42, "22 de Octubre."],
-  [44, "05 de Noviembre."],
-  [46, "19 de Noviembre."],
-  [48, "03 de Diciembre."],
-  [50, "17 de Diciembre."],
-  [52, "30 de Diciembre."],
-];
-
 function getWeekNumber(d) {
   d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
@@ -33,7 +10,52 @@ function getWeekNumber(d) {
 
 let currentWeek = getWeekNumber(new Date());
 
-export default class FirstQ extends React.Component {
+let d = new Date(),
+  year = d.getYear(),
+  fridays = [];
+
+d.setDate(1);
+
+// Get the first Friday in the month
+while (d.getDay() !== 5) {
+  d.setDate(d.getDate() + 1);
+}
+
+// Get all the other Fridays in the month
+while (d.getYear() === year || d.getYear() === year + 1) {
+  let pushDate = new Date(d.getTime());
+  let weekNo = getWeekNumber(pushDate);
+  fridays.push([
+    pushDate.getDate() +
+      "/" +
+      (pushDate.getMonth() + 1) +
+      "/" +
+      pushDate.getFullYear(),
+    weekNo[1],
+    weekNo[0],
+  ]);
+  d.setDate(d.getDate() + 7);
+}
+
+export default class CalendarQ extends React.Component {
+  constructor(props) {
+    super(props);
+    this.isPastMonday = this.isPastMonday.bind(this);
+  }
+
+  isPastMonday() {
+    let value = 0,
+      today = new Date();
+
+    if (this.props.onlyVirtual) {
+      if (currentWeek % 2 === 0 && today.getDay() > 1) value = 1;
+    } else {
+      if (currentWeek % 2 !== 0 && today.getDay() > 1) value = 1;
+    }
+
+    return value;
+  }
+
   render() {
     return (
       <div>
@@ -47,12 +69,17 @@ export default class FirstQ extends React.Component {
               tienen una duración aproximada de una hora.
             </h6>
             <ul className="ListOfFridays">
-              {calendarVir
-                .filter((day) => day[0] >= currentWeek[1])
-                .slice(0, 4)
+              {fridays
+                .filter(
+                  (day) =>
+                    day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
+                )
+                .filter((day) => day[1] % 2 === 0)
+                .filter((day) => day[0].substring(0, 5) !== "31/12")
+                .slice(this.isPastMonday(), 4 + this.isPastMonday())
                 .map((day) => (
-                  <li key={day[0]} onClick={this.props.handleClick}>
-                    {day[1]}
+                  <li key={day[2] + day[1]} onClick={this.props.handleClick}>
+                    {day[0]}
                   </li>
                 ))}
             </ul>
@@ -68,12 +95,17 @@ export default class FirstQ extends React.Component {
               tienen una duración aproximada de tres horas.
             </h6>
             <ul className="ListOfFridays">
-              {calendarInt
-                .filter((day) => day[0] >= currentWeek[1])
-                .slice(0, 4)
+              {fridays
+                .filter(
+                  (day) =>
+                    day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
+                )
+                .filter((day) => day[1] % 2 !== 0)
+                .filter((day) => day[0].substring(0, 5) !== "24/12")
+                .slice(this.isPastMonday(), 4 + this.isPastMonday())
                 .map((day) => (
-                  <li key={day[0]} onClick={this.props.handleClick}>
-                    {day[1]}
+                  <li key={day[2] + day[1]} onClick={this.props.handleClick}>
+                    {day[0]}
                   </li>
                 ))}
             </ul>

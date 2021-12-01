@@ -37,6 +37,9 @@ while (d.getYear() === year || d.getYear() === year + 1) {
   d.setDate(d.getDate() + 7);
 }
 
+// Change 24/12/21 (friday) to 23/12/21 (thursday)
+for (let v of fridays) if (v[0] === "24/12/2021") v[0] = "23/12/2021";
+
 export default class CalendarQ extends React.Component {
   constructor(props) {
     super(props);
@@ -48,9 +51,9 @@ export default class CalendarQ extends React.Component {
       today = new Date();
 
     if (this.props.onlyVirtual) {
-      if (currentWeek % 2 === 0 && today.getDay() > 1) value = 1;
+      if (currentWeek[1] % 2 === 0 && today.getDay() > 1) value = 1;
     } else {
-      if (currentWeek % 2 !== 0 && today.getDay() > 1) value = 1;
+      if (currentWeek[1] % 2 !== 0 && today.getDay() > 1) value = 1;
     }
 
     return value;
@@ -101,7 +104,7 @@ export default class CalendarQ extends React.Component {
                     day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
                 )
                 .filter((day) => day[1] % 2 !== 0)
-                .filter((day) => day[0].substring(0, 5) !== "24/12")
+                .filter((day) => day[0].substring(0, 3) !== "7/1")
                 .slice(this.isPastMonday(), 4 + this.isPastMonday())
                 .map((day) => (
                   <li key={day[2] + day[1]} onClick={this.props.handleClick}>

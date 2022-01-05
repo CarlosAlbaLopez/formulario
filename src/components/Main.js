@@ -342,6 +342,18 @@ export default class App extends React.Component {
               }),
             500
           );
+        } else if (this.state.calendarAnswer === "") {
+          window.alert(
+            "Por favor, responde la pregunta: ¿Qué día quieres programar la reunión?"
+          );
+          setTimeout(
+            () =>
+              this.setState({
+                currentQuestion: 7,
+                lastQuestion: 6,
+              }),
+            500
+          );
         } else {
           this.setState({
             currentQuestion: 9,

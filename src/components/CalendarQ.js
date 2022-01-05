@@ -78,8 +78,8 @@ export default class CalendarQ extends React.Component {
                     day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
                 )
                 .filter((day) => day[1] % 2 === 0)
-                .filter((day) => day[0].substring(0, 5) !== "31/12")
                 .slice(this.isPastMonday(), 4 + this.isPastMonday())
+                .filter((day) => day[0].substring(0, 5) !== "31/12")
                 .map((day) => (
                   <li key={day[2] + day[1]} onClick={this.props.handleClick}>
                     {day[0]}
@@ -104,8 +104,8 @@ export default class CalendarQ extends React.Component {
                     day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
                 )
                 .filter((day) => day[1] % 2 !== 0)
-                .filter((day) => day[0].substring(0, 3) !== "7/1")
                 .slice(this.isPastMonday(), 4 + this.isPastMonday())
+                .filter((day) => day[0].substring(0, 3) !== "7/1")
                 .map((day) => (
                   <li key={day[2] + day[1]} onClick={this.props.handleClick}>
                     {day[0]}

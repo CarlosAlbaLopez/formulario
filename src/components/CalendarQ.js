@@ -40,23 +40,17 @@ while (d.getYear() === year || d.getYear() === year + 1) {
 // Change 24/12/21 (friday) to 23/12/21 (thursday)
 for (let v of fridays) if (v[0] === "24/12/2021") v[0] = "23/12/2021";
 
-export default class CalendarQ extends React.Component {
-  constructor(props) {
-    super(props);
-    this.isPastMonday = this.isPastMonday.bind(this);
+//Dismiss passed fridays
+for (let i = 0; i < fridays.length; i++) {
+  if (currentWeek[1] > fridays[i][1]) {
+    fridays.splice(i, 1);
+    i--;
   }
+}
 
-  isPastMonday() {
-    let value = 0,
-      today = new Date();
-
-    if (this.props.onlyVirtual) {
-      if (currentWeek[1] % 2 === 0 && today.getDay() > 1) value = 1;
-    } else {
-      if (currentWeek[1] % 2 !== 0 && today.getDay() > 1) value = 1;
-    }
-
-    return value;
+export default class CalendarQ extends React.Component {
+  componentDidMount() {
+    this.props.handleIsPastMonday(currentWeek);
   }
 
   render() {
@@ -77,9 +71,9 @@ export default class CalendarQ extends React.Component {
                   (day) =>
                     day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
                 )
-                .filter((day) => day[1] % 2 === 0)
-                .slice(this.isPastMonday(), 4 + this.isPastMonday())
-                .filter((day) => day[0].substring(0, 5) !== "31/12")
+                .slice(this.props.isPastMonday, 7 + this.props.isPastMonday)
+                .filter((day) => day[1] % 2 !== 0)
+                .filter((day) => day[0].substring(0, 3) !== "7/1")
                 .map((day) => (
                   <li key={day[2] + day[1]} onClick={this.props.handleClick}>
                     {day[0]}
@@ -103,9 +97,8 @@ export default class CalendarQ extends React.Component {
                   (day) =>
                     day[1] >= currentWeek[1] || (day[2] > year && day[1] < 14)
                 )
-                .filter((day) => day[1] % 2 !== 0)
-                .slice(this.isPastMonday(), 4 + this.isPastMonday())
-                .filter((day) => day[0].substring(0, 3) !== "7/1")
+                .slice(this.props.isPastMonday, 7 + this.props.isPastMonday)
+                .filter((day) => day[1] % 2 === 0)
                 .map((day) => (
                   <li key={day[2] + day[1]} onClick={this.props.handleClick}>
                     {day[0]}

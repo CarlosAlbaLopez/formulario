@@ -41,6 +41,7 @@ export default class App extends React.Component {
       seventhEmail: "",
       eighthEmail: "",
       ninthEmail: "",
+      isPastMonday: 0,
     };
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -61,6 +62,7 @@ export default class App extends React.Component {
     this.handleNinthEmail = this.handleNinthEmail.bind(this);
     this.sendEmail = this.sendEmail.bind(this);
     this.sendClientEmail = this.sendClientEmail.bind(this);
+    this.handleIsPastMonday = this.handleIsPastMonday.bind(this);
   }
 
   handleInput(e) {
@@ -381,6 +383,15 @@ export default class App extends React.Component {
     }
   }
 
+  handleIsPastMonday(currentWeek) {
+    let today = new Date();
+
+    if (today.getDay() > 1)
+      this.setState({
+        isPastMonday: 1,
+      });
+  }
+
   handleExtraBtn() {
     let answer = document.getElementById("tArea");
     if (!answer.value) {
@@ -602,6 +613,8 @@ export default class App extends React.Component {
             <CalendarQ
               onlyVirtual={this.state.onlyVirtual}
               handleClick={this.handleClick}
+              isPastMonday={this.state.isPastMonday}
+              handleIsPastMonday={this.handleIsPastMonday}
             />
           )}
           {this.state.currentQuestion === 8 && (

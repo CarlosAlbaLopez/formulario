@@ -493,9 +493,9 @@ export default class App extends React.Component {
   }
 
   sendEmail() {
-    const a = "service_5w6xo6f",
-      b = "template_rw7cd0r",
-      c = "user_iWaQwq2FAyAJRfwdEhOnt",
+    const a = process.env.REACT_APP_SERVICE,
+      b = process.env.REACT_APP_TEMPLATE,
+      c = process.env.REACT_APP_USER,
       reservation = this.state.onlyVirtual ? "AULA VIRTUAL" : "INTEGRAL",
       data = {
         name: this.state.name,
@@ -525,9 +525,9 @@ export default class App extends React.Component {
   }
 
   sendClientEmail() {
-    const a = "service_5w6xo6f",
-      b = "template_cpw0owc",
-      c = "user_iWaQwq2FAyAJRfwdEhOnt",
+    const a = process.env.REACT_APP_SERVICE,
+      b = process.env.REACT_APP_CLIENT_TEMPLATE,
+      c = process.env.REACT_APP_USER,
       title = "¡Tu formación se ha agendado correctamente!",
       date = "Fecha de la formación: " + this.state.calendarAnswer,
       reservation = this.state.onlyVirtual
